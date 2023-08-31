@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 struct MyStack
@@ -69,6 +70,6 @@ int main()
     cout<<s.size()<<endl;
     cout<<s.peek()<<endl;
     cout<<s.isEmpty()<<endl;
-    
+
     return 0;
 }
