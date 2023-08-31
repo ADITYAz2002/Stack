@@ -69,5 +69,4 @@ struct MyStack
         
         return head -> data;
     }
-
-}
+};
