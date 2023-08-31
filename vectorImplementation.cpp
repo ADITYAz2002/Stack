@@ -1,3 +1,7 @@
+/*
+    Vector implementation is more simpler and dynamic in nature 
+    and the amortized time complexity is O(1)!
+*/
 #include <iostream>
 using namespace std;
 #include<vector>
@@ -33,4 +37,3 @@ struct MyStack
         return v.back();
     }
 };
-
