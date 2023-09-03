@@ -31,50 +31,76 @@ int getMaxArea(int arr[],int n)
     // }   
     // return res;
 
-    // EFFICIENT SOLUTION
+    // BETTER SOLUTION
+    // int ps[n], ns[n], res = 0;
+    // stack<int> s;
 
-    int ps[n], ns[n], res = 0;
+    // s.push(0);
+    // for(int i = 0; i < n; i++)
+    // {
+    //     while(s.empty() == false && arr[i] <= arr[s.top()])
+    //         s.pop();
+        
+    //     int pse = s.empty() ? -1 : s.top();
+
+    //     ps[i] = pse;
+    //     s.push(i);
+    // }
+    // while(s.empty() == false)
+    //     s.pop();
+    
+    // s.push(n-1);
+    // for(int i = n-1; i >= 0; i--)
+    // {
+    //     while(s.empty() == false && arr[i] <= arr[s.top()])
+    //         s.pop();
+        
+    //     int nse = s.empty() ? n : s.top();
+
+    //     ns[i] = nse;
+    //     s.push(i);
+    // }
+
+    // for(int i=0;i<n;i++)
+    // {
+    //     int curr=arr[i];
+    //     curr+=(i-ps[i]-1)*arr[i];
+    //     curr+=(ns[i]-i-1)*arr[i];
+    //     res=max(res,curr);
+    // }
+    // return res;
+
+    //EFFICIENT SOLUTION
+
     stack<int> s;
 
-    s.push(0);
+    int res = 0;
     for(int i = 0; i < n; i++)
     {
         while(s.empty() == false && arr[i] <= arr[s.top()])
+        {
+            int tp = s.top();
             s.pop();
-        
-        int pse = s.empty() ? -1 : s.top();
-
-        ps[i] = pse;
+            int curr = arr[tp] * (s.empty() ? i : (i-s.top()-1));
+            res = max(res, curr);
+        }
         s.push(i);
     }
-    while(s.empty() == false)
+
+    while(!s.empty())
+    {
+        int tp = s.top();
         s.pop();
-    
-    s.push(n-1);
-    for(int i = n-1; i >= 0; i--)
-    {
-        while(s.empty() == false && arr[i] <= arr[s.top()])
-            s.pop();
-        
-        int nse = s.empty() ? n : s.top();
-
-        ns[i] = nse;
-        s.push(i);
+        int curr = arr[tp] * (s.empty() ? n : (n-s.top()-1));
+        res = max(res, curr);
     }
 
-    for(int i=0;i<n;i++)
-    {
-        int curr=arr[i];
-        curr+=(i-ps[i]-1)*arr[i];
-        curr+=(ns[i]-i-1)*arr[i];
-        res=max(res,curr);
-    }
     return res;
 }
 
 int main() 
 { 
-    int arr[]={6,2,5,4,1,5,6};
+    int arr[]={6,2,5,4,5,1,6};
     int n=7;
     cout<<"Maximum Area: "<<getMaxArea(arr,n);
     return 0; 
