@@ -27,10 +27,14 @@ class Conversion
         }
 
         bool isEmpty()
+        {
             return (top == -1);
+        }
 
         char peek()
+        {
             return array[top];
+        }
             
         char pop() 
         {
@@ -51,7 +55,9 @@ class Conversion
         }
 
         bool isOperand(char ch)
+        {
             return isalpha(ch);
+        }
 
         bool notGreater(char i) 
         {
